@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACE88｜Language</title>
+    <script src="js/vue_3.2.19.js"></script>
+    <link rel="stylesheet" href="scss/lang.css">
+</head>
+
+<body>
+    <div id="langPage">
+        <!-- slogan start -->
+        <div class="slogan">
+            <div class="logo">
+                <img src="images/logo/logo.png">
+            </div>
+            <p>Please Choose Your Country</p>
+        </div>
+
+        <!-- langList start -->
+        <div class="langList" id="langList">
+            <ul>
+                <li v-for="(item,index) in langList" :key="index" :class="{'on' : index == selLan}" @click="chgSel(index)">
+                    <div class="flag">
+                        <img :src="item.src" :alt="item.alt">
+                    </div>
+                    <div class="btn">{{item.txt}}</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- mobileSubmit start -->
+        <div class="mobileSubmit">
+            <div class="btn" @click="goSubmit()">Submit</div>
+        </div>
+        <!-- copyright start -->
+        <div class="copyright">Copyright &#169; Ace88. All Rights Reserved</div>
+    </div>
+
+    <script>
+        var indexVue = Vue.createApp({
+            data() {
+                return {
+                    langList: [
+                        { src: 'images/flag/MYS.png', alt: 'MYS Flag', txt: 'Malaysia' },
+                        { src: 'images/flag/SGP.png', alt: 'SGP Flag', txt: 'Singapore' },
+                        { src: 'images/flag/THA.png', alt: 'THA Flag', txt: 'Thailand' },
+                        { src: 'images/flag/VIE.png', alt: 'VIE Flag', txt: 'Vietnam' },
+                        { src: 'images/flag/AUS.png', alt: 'AUS Flag', txt: 'Australia' },
+                        { src: 'images/flag/PHL.png', alt: 'PHL Flag', txt: 'Philiphines' },
+                        { src: 'images/flag/IDN.png', alt: 'IDN Flag', txt: 'Indonesia' },
+                        { src: 'images/flag/USA.png', alt: 'USA Flag', txt: 'Us America' }
+                    ],
+                    selLan: 0
+                };
+            },
+            methods: {
+                isMobile() {
+                    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                },
+                chgSel(idx){
+                    if(this.isMobile()){
+                        this.selLan = idx;
+                    }else{
+                        alert(`Select language is${this.langList[idx].txt}`);
+                    }
+                },
+                goSubmit(){
+                    alert(`Select language is ${this.langList[this.selLan].txt}`);
+                }
+            },
+            mounted() {},
+        }).mount("#langPage");
+    </script>
+
+</body>
+
+</html>
+</html>
