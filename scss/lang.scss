@@ -1,42 +1,112 @@
 @import "reset";
 @import "method";
 
-body{
+body {
+    user-select: none;
+    color: #fff;
     background: linear-gradient(90deg, #000, #1b062e, #000, #000 75%, #1c0c34, #000);
+}
+
+// logo 模組
+.logo {
+    position: relative;
+    overflow: hidden;
+    .txt {
+        opacity: 0.4;
+        position: relative;
+        z-index: 2;
+        animation: logo-1 4s infinite linear;
+        transform: scaleX(-1);
+    }
+    .momo {
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: logo-2 4s infinite;
+        opacity: 0;
+    }
+    .flash {
+        width: 35%;
+        position: absolute;
+        top: 0%;
+        left: 16%;
+        opacity: 0;
+        animation: logo-3 4s infinite linear;
+    }
+
+    @keyframes logo-1 {
+        0% {
+            opacity: 0.4;
+            transform: scaleX(-1) scaleY(0.5);
+        }
+        15%,100% {
+            opacity: 1;
+            transform: scaleX(1) scaleY(1);
+        }
+    }
+
+    @keyframes logo-2 {
+        0%,15% {
+            opacity: 0;
+            transform: scale(0.2);
+        }
+        25%,100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes logo-3 {
+        0%,25%,70% {
+            opacity: 0;
+            transform: rotate(0deg) scale(0.5);
+        }
+        40%,80% {
+            opacity: 1;
+            transform: rotate(180deg) scale(1);
+        }
+        55%,100% {
+            opacity: 0;
+            transform: rotate(360deg) scale(0.5);
+        }
+    }
 }
 
 // slogan start
 .slogan {
-    padding-bottom: 10px; 
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .logo {
-        max-width: 250px;
+        max-width: 220px;
         margin-bottom: 15px;
-        animation: breathe 2s infinite linear;
     }
     p {
         color: #f6a019;
         font-size: 26px;
-        font-weight: bold;   
+        font-weight: bold;
     }
 
-    @include rwd(680){
-        .logo{
+    @include rwd(680) {
+        .logo {
             max-width: 200px;
         }
-        p{
+        p {
             font-size: 23px;
         }
     }
-    @include rwd(450){
-        .logo{
+    @include rwd(450) {
+        .logo {
             max-width: 160px;
             margin-bottom: 10px;
         }
-        p{
-            font-size: 20px; 
+        p {
+            font-size: 20px;
         }
     }
 }
@@ -45,7 +115,7 @@ body{
 .langList {
     padding: 60px 0 20px;
     ul {
-        max-width: 680px;
+        max-width: 650px;
         padding: 0 15px;
         margin: auto;
         display: flex;
@@ -55,19 +125,19 @@ body{
     li {
         width: calc(100% / 4);
         padding: 0 10px 40px;
-        opacity: .4;
+        opacity: 0.4;
         filter: grayscale(10);
         cursor: pointer;
         @include hover {
-            transition: opacity .3s;
+            transition: opacity 0.3s;
             &:hover {
                 opacity: 1;
                 filter: grayscale(0);
             }
         }
-        @include phone{ 
-            &.on{
-                opacity: 1; 
+        @include phone {
+            &.on {
+                opacity: 1;
                 filter: grayscale(0);
             }
         }
@@ -88,86 +158,61 @@ body{
         font-size: 16px;
         font-weight: bold;
         cursor: pointer;
-        user-select: none;
         transition: 0.3s;
     }
 
-    @include rwd(680){
+    @include rwd(680) {
         padding: 30px 0 20px;
-        ul{
+        ul {
             max-width: 500px;
         }
 
-        li{
+        li {
             width: calc(100% / 3);
-            padding: 0 10px 30px; 
+            padding: 0 10px 30px;
         }
-        .btn{
-           font-size: 14px;
+        .btn {
+            font-size: 14px;
         }
     }
-    
-    @include rwd(450){
-        li{
+
+    @include rwd(450) {
+        li {
             width: calc(100% / 4);
             padding: 0 5px 5px;
         }
 
-        .flag{
+        .flag {
             width: 100%;
         }
-        .btn{
+        .btn {
             font-size: 12px;
             display: none;
         }
     }
 }
 
-// mobileSubmit start 
-.mobileSubmit{
+// mobileSubmit start
+.mobileSubmit {
     margin: 40px auto 0;
     display: none;
-    @include phone{
+    @include phone {
         display: flex;
         justify-content: center;
     }
-    .btn{
+    .btn {
         width: 150px;
-        padding: 15px 10px;
-        border-radius: 45px;
-        color: #fff;      
-        background: linear-gradient(36deg,#9F03FB 50%,#FDAD1A);
-        box-shadow: 0 0 5px #FDAD1A inset,0 1px 2px #ffc760;
-        font-size: 15px;
-        font-weight: bold;
-        text-align: center;
-        transition: .3s;
-        &:active{
-            transform: translateY(2px);
-        }
+        @include gradient-btn(5);
     }
 }
 
 // copyright start
-.copyright{
+.copyright {
     padding: 10px 10px 20px;
     color: #fff;
     text-align: center;
     font-size: 14px;
-    @include rwd(450){
+    @include rwd(450) {
         font-size: 12px;
-    }
-}
-
-@keyframes breathe {
-    0%,
-    100% {
-        opacity: 0.8;
-        transform: scale(0.98);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1);
     }
 }

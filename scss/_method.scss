@@ -83,3 +83,43 @@
     };
     #{$style} : #{$obj};
 }
+
+// 漸層按鈕
+@mixin gradient-btn($style){
+    height: 45px;
+    padding: 0 10px;
+    border-radius: 45px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    &:active {
+        transform: translateY(2px);
+    }
+
+    @if $style == 1 {
+       background: radial-gradient(circle at 50% -57%, #6ba71a 12%, #abd76e, #50791a, #3f670b);
+       box-shadow: 0px -2px 3px #83c132 inset, 0 2px 2px #304f08;
+    } @else if $style == 2 {
+        background: radial-gradient(circle at 50% -57%,#3b98d5 12%,#88bcdd,#6244EB,#2d1692);
+        box-shadow: 0px -2px 3px #88bcdd inset, 0 2px 2px #301999;
+    }
+    @else if $style == 3 {
+        background: radial-gradient(circle at 50% -57%, #a32020 12%, #e38d8d, #c13030, #610707);
+        box-shadow: 0px -2px 3px #ff739a inset, 0 2px 2px #610707;
+    }
+    @else if $style == 4 {
+        background: radial-gradient(circle at 50% -57%, #781291 12%, #823f93 , #4f165d , #3d0b49);
+        box-shadow: 0px -2px 3px #ac3ec7 inset, 0 2px 2px #0a020c;
+    }
+
+    @else if $style == 5 {
+        background: linear-gradient(22deg, #410157, #AC19DE 40%,#b9915d, #ffe3bf );
+        box-shadow: 0px -2px 3px #ffe3bf inset, 0 2px 2px #88449f;
+    }
+}
